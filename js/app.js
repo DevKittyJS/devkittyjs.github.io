@@ -211,5 +211,4 @@ function showLoader(name) {
 `.trim();
 
   modal.hidden = false;
-
 }

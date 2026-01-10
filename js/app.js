@@ -1,7 +1,7 @@
 /* ============================================================
    CONFIG
 ============================================================ */
-const BACKEND_URL = "https://devkittyapi.onrender.com";
+const BACKEND_URL = "https://api-devkitty.onrender.com";
 const OWNER = "DevKittyJS";
 const REPO = "API";
 const loaderBaseUrl = `https://raw.githubusercontent.com/${OWNER}/${REPO}/main/ldscr`;
@@ -211,4 +211,5 @@ function showLoader(name) {
 `.trim();
 
   modal.hidden = false;
+
 }

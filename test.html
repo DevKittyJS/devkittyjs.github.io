@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devkitty v1 Demo</title>
+    <style>
+        body { font-family: sans-serif; padding: 2rem; }
+        .row { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        .row > dk-el { border: 1px solid #ccc; padding: 1rem; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>Devkitty v1 Demo</h1>
+
+    <!-- Immediate preload -->
+    <h2>Immediate preload</h2>
+    <div class="row">
+        <dk-el icon="icon4" size="50" color="red" preload="immediate"></dk-el>
+        <dk-el icon="icon4" size="60" color="green" preload="immediate"></dk-el>
+    </div>
+
+    <!-- Hover preload -->
+    <h2>Hover preload</h2>
+    <div class="row">
+        <dk-el icon="icon4" size="50" color="blue" preload="hover"></dk-el>
+        <dk-el icon="icon4" size="70" color="orange" preload="hover"></dk-el>
+    </div>
+
+    <!-- Viewport preload -->
+    <h2>Viewport preload (scroll down)</h2>
+    <div style="height:800px; background:#eee; margin-bottom:1rem;">Scroll to see icons</div>
+    <div class="row">
+        <dk-el icon="icon4" size="60" color="purple" preload="viewport"></dk-el>
+        <dk-el icon="icon4" size="50" color="brown" preload="viewport"></dk-el>
+    </div>
+
+    <!-- Idle preload -->
+    <h2>Idle preload</h2>
+    <div class="row">
+        <dk-el icon="icon4" size="50" color="pink" preload="idle"></dk-el>
+        <dk-el icon="icon4" size="60" color="cyan" preload="idle"></dk-el>
+    </div>
+
+    <!-- Never preload -->
+    <h2>Manual load (preload="never")</h2>
+    <div class="row">
+        <dk-el icon="icon4" size="50" color="black" preload="never" id="manual1"></dk-el>
+        <dk-el icon="icon4" size="60" color="grey" preload="never" id="manual2"></dk-el>
+    </div>
+    <button id="loadManual">Load manual icons</button>
+
+    <!-- Scripts -->
+    <script src="public/devkitty.min.js"></script>
+    <script>
+        // Fetch the demo GGDK pack
+        GGDK.fetch('icons(2).ggdk');
+
+        // Manual load example
+        document.getElementById('loadManual').addEventListener('click', () => {
+            document.getElementById('manual1').load();
+            document.getElementById('manual2').load();
+        });
+
+        // Dynamic rerender example
+        setTimeout(() => {
+            const icon1 = document.querySelector('dk-el[icon="icon1"]');
+            if (icon1) {
+                icon1.setAttribute('color', 'gold');
+                icon1.setAttribute('size', '80');
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

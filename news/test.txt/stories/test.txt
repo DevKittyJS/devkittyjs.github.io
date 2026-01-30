@@ -1,0 +1,4 @@
+[image] https://cdn.example.com/image.png
+[title] Hotfixes: January 2026
+[article] Performance fixes, stability improvements, and gameplay bug fixes across multiple systems. More content continues here but only the first 30 words will be shown on the homepage preview.
+[meta] January 27th 2026 · Posted by Devkitty Team

@@ -1,2 +1,3 @@
+news2.txt
 news1.txt
 text.txt

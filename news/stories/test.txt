@@ -1,0 +1,16 @@
+[image] https://example.com/image.jpg
+[title] My Article Title
+[article]
+
+## First Subtitle
+This is a paragraph with **bold text** inside it.
+It can span multiple lines.
+
+This is a second paragraph under the same subtitle.
+
+## Second Subtitle
+Another paragraph here with **important words** highlighted.
+
+And a final paragraph to close things out.
+
+[meta] January 27th 2026 · Posted by Devkitty Team

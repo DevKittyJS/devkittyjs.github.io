@@ -684,7 +684,7 @@ footer .container .contact .info li a:hover {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 915px) {
     header.header {
         justify-content: space-between;
     }
@@ -708,7 +708,7 @@ footer .container .contact .info li a:hover {
 }
 
 /* Mobile Layout */
-@media (max-width: 767px) {
+@media (max-width: 914px) {
     header.header {
         justify-content: flex-start;
         align-items: center;
@@ -775,4 +775,5 @@ footer .container .contact .info li a:hover {
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 20px;
     }
+
 }

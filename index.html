@@ -1,36 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>DevKitty</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/light/Logo.svg">
-    <link rel="icon" href="images/light/Logo.svg" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="images/dark/Logo.svg" media="(prefers-color-scheme: dark)">
-    <link rel="stylesheet" href="styles/site.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Responsive Header</title>
 </head>
+
 <body>
-    <div class="container">
-        <div class="image-section">
-            <img class="logo" alt="DevKitty Logo">
-        </div>
-
-        <div class="text-section">
-            <h1>Pardon the mess</h1>
-
-            <p>
-                DevKitty is currently curled up rewriting its code.<br>
-                We're tearing things apart, refactoring everything,
-                and rebuilding the site into something cleaner,
-                faster, and more powerful than before.
-            </p>
-
-            <span class="meta">
-                Closed for maintenance on 8 January 2026 • Farnborough, UK <br> &copy; DevKitty JS 2026
-            </span>
-        </div>
+  <header class="header">
+    <div class="logo"><dk-el icon="Devkitty" size="45" color="#ff5c93"></dk-el>DevKitty</div>
+    <div class="nav-wrapper">
+      <div class="nav-container">
+        <nav class="navigation">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Converter</a></li>
+            <li><a href="#">Examples</a></li>
+          </ul>
+        </nav>
+        <div class="sign-in"> <button>Try-Out</button> </div>
+      </div>
     </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="image"> <dk-el icon="xmark" size="30" color="#0f1220"></dk-el> <dk-el icon="circle" size="30"
+          color="#0f1220"></dk-el> <dk-el icon="square" size="30" color="#0f1220"></dk-el> <dk-el icon="triangle"
+          size="30" color="#0f1220"></dk-el> </div>
+      <div class="hero-inner">
+        <h2>Icons, without the SVG mess.</h2>
+        <p> Devkitty is a lightweight icon rendering system that keeps SVGs out of the DOM, loads only what you use, and
+          stays fast at any scale. </p>
+        <div class="actions"> <a href="convert" class="primary">Get Started</a> <a href="docs" class="secondary">View
+            Docs</a> </div>
+      </div>
+    </section>
+    <section class="news">
+      <div class="section-inner">
+        <h3 class="news-title">News</h3>
+        <div class="news-list" id="newsList"> <!-- Add more <article class="news-item"> here --> </div>
+        <div class="news-actions"> <button id="loadMoreNews">Load more</button> </div>
+      </div>
+    </section>
+    <section class="about" id="about">
+      <div class="section-inner">
+        <div class="content-section">
+          <div class="title">
+            <h1>About Us</h1>
+          </div>
+          <div class="content">
+            <h3>Designed by developers for developers.</h3>
+            <p>Devkitty is a lightweight JavaScript icon system designed to keep your markup clean and your projects
+              fast. Instead of injecting raw SVG into the DOM, Devkitty renders icons from a compact file format, giving
+              you full control over performance, loading behavior, and scalability. Whether you're building a small site
+              or a large application with hundreds of icons, Devkitty ensures consistent rendering, strict structure,
+              and zero unnecessary overhead.</p>
+          </div>
+          <div class="social"> <a href="#"><dk-el icon="facebook-f" size="30" color="#ff5c93"></dk-el></a> <a
+              href="#"><dk-el icon="twitter-x" size="30" color="#ff5c93"></dk-el></a> <a href="#"><dk-el icon="github"
+                size="30" color="#ff5c93"></dk-el></a> </div>
+        </div>
+        <div class="image-section"> <img src="https://placehold.co/600x400" alt="placeholder image"> </div>
+      </div>
+    </section>
+    <section class="why">
+      <div class="section-inner">
+        <div class="title">
+          <h3>Why Devkitty?</h3>
+        </div>
+
+        <p>
+          Devkitty delivers icons through a secure file (.GGDK) to your website. Providing performance, protection, and
+          total control without polluting your DOM and long site loading times. We are supported by all modern web
+          browsers such as Google Chrome, Microsoft Edge and OperaGX.
+        </p>
+
+        <div class="features">
+
+          <div class="feature">
+            <h4>Protected by Design</h4>
+            <p>
+              Icons never appear as raw SVG in the DOM. They're reconstructed at runtime and
+              applied via HTML5 Canvas, keeping your assets clean and protected.
+            </p>
+          </div>
+
+          <div class="feature">
+            <h4>Ultra-Light GGDK Format</h4>
+            <p>
+              A compact, structured file format built specifically for icons. Fast to parse,
+              strict by design, and optimized for packages with 100+ icons.
+            </p>
+          </div>
+
+          <div class="feature">
+            <h4>Performance Loading</h4>
+            <p>
+              Load icons immediately, on idle, on hover, in viewport, or manually.
+              Devkitty gives you full control over when rendering happens.
+            </p>
+          </div>
+
+          <div class="feature">
+            <h4>Framework-Free</h4>
+            <p>
+              Powered by the &lt;dk-el&gt; element. No dependencies. No framework lock-in.
+              Works anywhere HTML works — and built to expand beyond icons in the future.
+            </p>
+          </div>
+
+        </div>
+        <div class="supported-container">
+          <div class="supported-title">Some Of Our Supported browsers:</div>
+          <div class="icon-container"> <dk-el class="icon__item" icon="chrome" size="100" color="#fff"></dk-el> <dk-el
+              class="icon__item" icon="edge" size="100" color="#fff"></dk-el> <dk-el class="icon__item" icon="safari"
+              size="100" color="#fff"></dk-el> <dk-el class="icon__item" icon="firefox" size="100" color="#fff"></dk-el>
+            <dk-el class="icon__item" icon="brave" size="100" color="#fff"></dk-el> <dk-el class="icon__item"
+              icon="opera" size="100" color="#fff"></dk-el>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="sec about">
+        <h2>About Us</h2>
+        <p>Devkitty is a lightweight JavaScript icon system designed to keep your markup clean and your projects
+          fast. Instead of injecting raw SVG...</p>
+        <ul class="sci">
+          <li><a href="#"><dk-el icon="github" size="25" color="#0f1220"></dk-el></a></li>
+          <li><a href="#"><dk-el icon="facebook-f" size="25" color="#0f1220"></dk-el></a></li>
+          <li><a href="#"><dk-el icon="twitter-x" size="25" color="#0f1220"></dk-el></a></li>
+          <li><a href="#"><dk-el icon="instagram" size="25" color="#0f1220"></dk-el></a></li>
+          <li><a href="#"><dk-el icon="youtube" size="25" color="#0f1220"></dk-el></a></li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Converter</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Examples</a></li>
+        </ul>
+        <ul>
+          <li><a href="3">News</a></li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="#">License</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="#">Github</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Converter</a></li>
+        </ul>
+        <ul>
+          <li style="display: none;"><a href="#">Account</a></li>
+        </ul>
+        <ul>
+          <li style="display: none;"><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="sec contact">
+        <h2>Contact Us</h2>
+        <ul class="info">
+          <li style="display: none;"> <span><dk-el icon="phone" size="20" color="#0f1220"></dk-el></span>
+            <p><a href="tel:+12345678900">+1 234 567 8900</a></p>
+          </li>
+          <li> <span><dk-el icon="email" size="20" color="#0f1220"></dk-el></span>
+            <p><a href="mailto:devkittyjs@gmail.com">devkittyjs@gmail.com</a></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="copyrightText">
+    <p>Copyright &copy;2026 Devkitty. All Rights Reserved.</p>
+  </div>
+
+  <script>
+    //header scroll for pc
+    const container = document.querySelector('.nav-container');
+
+    container.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        container.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    });
+
+    //dk-el color change
+    (function () {
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      // Sections we want to auto-theme
+      const sections = [
+        document.querySelector('footer'),
+        document.querySelector('.hero .image'),
+        document.querySelector('.supported-container .icon-container')
+      ].filter(Boolean);
+
+      function applyIconColor(isDark) {
+        const color = isDark ? '#e6e8eb' : '#0f1220';
+
+        sections.forEach(section => {
+          section.querySelectorAll('dk-el').forEach(icon => {
+            icon.setAttribute('color', color);
+          });
+        });
+      }
+
+      // Initial apply
+      applyIconColor(media.matches);
+
+      // React to system theme changes
+      media.addEventListener('change', e => {
+        applyIconColor(e.matches);
+      });
+    })();
+
+    //news logic
+    const BASE =
+      "https://raw.githubusercontent.com/DevKittyJS/devkittyjs.github.io/main/news/";
+
+    const STORIES_BASE = BASE + "stories/";
+    const MANIFEST_URL = BASE + "manifest.txt";
+
+    const newsList = document.getElementById("newsList");
+    const loadMoreBtn = document.getElementById("loadMoreNews");
+
+    const INITIAL_COUNT = 2;
+    const MAX_PREVIEW = 10;
+    let visibleCount = INITIAL_COUNT;
+
+    /* ============================
+       STORY PARSING (RAW)
+    ============================ */
+
+    function parseStory(text) {
+      const data = {
+        image: "",
+        title: "",
+        articleRaw: "",
+        meta: ""
+      };
+
+      let inArticle = false;
+
+      for (let line of text.split("\n")) {
+        line = line.trim();
+
+        if (line.startsWith("[image]")) {
+          data.image = line.replace("[image]", "").trim();
+          inArticle = false;
+        } else if (line.startsWith("[title]")) {
+          data.title = line.replace("[title]", "").trim();
+          inArticle = false;
+        } else if (line.startsWith("[article]")) {
+          inArticle = true;
+        } else if (line.startsWith("[meta]")) {
+          data.meta = line.replace("[meta]", "").trim();
+          inArticle = false;
+        } else if (inArticle) {
+          data.articleRaw += line + "\n";
+        }
+      }
+
+      return data;
+    }
+
+    /* ============================
+       PREVIEW (NO SUBTITLES)
+    ============================ */
+
+    function getPreviewFromRaw(rawText, words = 30) {
+      const cleanText = rawText
+        .split("\n")
+        .filter(line => !line.trim().startsWith("## ")) // remove subtitles
+        .join(" ")
+        .replace(/\*\*(.*?)\*\*/g, "$1"); // remove bold markers
+
+      return (
+        cleanText
+          .split(/\s+/)
+          .slice(0, words)
+          .join(" ") + "…"
+      );
+    }
+
+    /* ============================
+       LOAD NEWS
+    ============================ */
+
+    async function loadNews() {
+      try {
+        const manifestRes = await fetch(MANIFEST_URL);
+        if (!manifestRes.ok) return;
+
+        const files = (await manifestRes.text())
+          .split("\n")
+          .map(l => l.trim())
+          .filter(l => l && !l.startsWith("#"))
+          .slice(0, MAX_PREVIEW + 1); // 👈 HARD LIMIT
+
+
+        const fragment = document.createDocumentFragment();
+        let index = 0;
+
+        for (const file of files) {
+          const res = await fetch(STORIES_BASE + file);
+          if (!res.ok) continue;
+
+          const story = parseStory(await res.text());
+
+          const link = document.createElement("a");
+          link.className = "news-link";
+          link.href = `/news/?article=${encodeURIComponent(file)}`;
+
+          // PRE-HIDE items beyond initial count
+          if (index >= INITIAL_COUNT) {
+            link.style.display = "none";
+          }
+
+          link.innerHTML = `
+        <article class="news-item">
+          <img src="${story.image}" alt="${story.title}">
+          <div class="news-content">
+            <h4>${story.title}</h4>
+            <p>${getPreviewFromRaw(story.articleRaw)}</p>
+            <span class="news-meta">${story.meta}</span>
+          </div>
+        </article>
+      `;
+
+          fragment.appendChild(link);
+          index++;
+        }
+
+        // Single DOM write — no flash
+        newsList.appendChild(fragment);
+
+        initNewsPreview();
+
+      } catch (err) {
+        console.error("Failed to load news:", err);
+      }
+    }
+
+    /* ============================
+       PREVIEW + LOAD MORE
+    ============================ */
+
+    function initNewsPreview() {
+      const allItems = Array.from(newsList.children);
+
+      loadMoreBtn.addEventListener("click", () => {
+        const nextCount = visibleCount + 2;
+
+        // Redirect once preview limit is hit
+        if (nextCount > MAX_PREVIEW) {
+          window.location.href = "/news";
+          return;
+        }
+
+        for (let i = visibleCount; i < nextCount; i++) {
+          if (allItems[i]) {
+            allItems[i].style.display = "block";
+          }
+        }
+
+        visibleCount = nextCount;
+
+        if (visibleCount >= allItems.length) {
+          loadMoreBtn.style.display = "none";
+        }
+      });
+    }
+
+    loadNews();
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js" ggdk="https://raw.githubusercontent.com/DevKittyJS/devkittyjs.github.io/refs/heads/main/GGDK/icons.ggdk"></script>
 </body>
+
 </html>
-
-

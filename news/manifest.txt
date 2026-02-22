@@ -1,12 +1,1 @@
-news1.txt
-news2.txt
-news3.txt
-news4.txt
-news5.txt
-news6.txt
-news7.txt
-news8.txt
-news9.txt
-news10.txt
-news11.txt
-test.txt
+OpeningTheSite.txt

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News · Devkitty</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="logo"><dk-el icon="Devkitty" size="45" color="#ff5c93"></dk-el>DevKitty</div>
+    <div class="nav-wrapper">
+      <div class="nav-container">
+        <nav class="navigation">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Converter</a></li>
+            <li><a href="#">Examples</a></li>
+          </ul>
+        </nav>
+        <div class="sign-in"> <button>Try-Out</button> </div>
+      </div>
+    </div>
+  </header>
+
+    <main>
+
+        <!-- LIST VIEW -->
+        <section id="newsListView" class="section-inner">
+            <h2 class="news-title">News</h2>
+
+            <div class="news-list" id="newsList"></div>
+
+            <div class="news-actions">
+                <button id="loadMoreNews">Load more</button>
+            </div>
+        </section>
+
+        <!-- ARTICLE VIEW -->
+        <section id="articleView" class="article-view" hidden>
+            <button class="back-button" id="backToList">← Back to news</button>
+            <h1 id="articleTitle"></h1>
+            <div class="article-meta" id="articleMeta"></div>
+            <img id="articleImage" />
+            <div class="article-body" id="articleBody"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="sec about">
+                <h2>About Us</h2>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima cumque quidem veritatis quisquam
+                    totam ea
+                    cupiditate odit praesentium eum velit!</p>
+                <ul class="sci">
+                    <li><a href="#"><dk-el icon="github" size="25" color="#0f1220"></dk-el></a></li>
+                    <li><a href="#"><dk-el icon="facebook-f" size="25" color="#0f1220"></dk-el></a></li>
+                    <li><a href="#"><dk-el icon="twitter-x" size="25" color="#0f1220"></dk-el></a></li>
+                    <li><a href="#"><dk-el icon="instagram" size="25" color="#0f1220"></dk-el></a></li>
+                    <li><a href="#"><dk-el icon="youtube" size="25" color="#0f1220"></dk-el></a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Product</h2>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Converter</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Examples</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/news">News</a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Legal</h2>
+                <ul>
+                    <li><a href="#">License</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="sec quicklinks">
+                <h2>Resources</h2>
+                <ul>
+                    <li><a href="#">Github</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Account</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+            <div class="sec contact">
+                <h2>Contact Us</h2>
+                <ul class="info">
+                    <li>
+                        <span><dk-el icon="phone" size="20" color="#0f1220"></dk-el></span>
+                        <p><a href="tel:+12345678900">+1 234 567 8900</a></p>
+                    </li>
+                    <li>
+                        <span><dk-el icon="email" size="20" color="#0f1220"></dk-el></span>
+                        <p><a href="mailto:example@email.com">example@email.com</a></p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="copyrightText">
+        <p>Copyright &copy;2026 Devkitty. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        //header scroll for pc
+        const container = document.querySelector('.nav-container');
+
+        container.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                container.scrollLeft += e.deltaY;
+                e.preventDefault();
+            }
+        });
+
+        //dk-el color change
+        (function () {
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+            // Sections we want to auto-theme
+            const sections = [
+                document.querySelector('footer'),
+                document.querySelector('.hero .image')
+            ].filter(Boolean);
+
+            function applyIconColor(isDark) {
+                const color = isDark ? '#e6e8eb' : '#0f1220';
+
+                sections.forEach(section => {
+                    section.querySelectorAll('dk-el').forEach(icon => {
+                        icon.setAttribute('color', color);
+                    });
+                });
+            }
+
+            // Initial apply
+            applyIconColor(media.matches);
+
+            // React to system theme changes
+            media.addEventListener('change', e => {
+                applyIconColor(e.matches);
+            });
+        })();
+
+        //news
+
+        /* ============================
+           CONFIG
+        ============================ */
+
+        const BASE =
+            "https://raw.githubusercontent.com/DevKittyJS/devkittyjs.github.io/main/news/";
+        const STORIES_BASE = BASE + "stories/";
+        const MANIFEST_URL = BASE + "manifest.txt";
+
+        const PAGE_SIZE = 10;
+
+        /* ============================
+           ELEMENTS
+        ============================ */
+
+        const listView = document.getElementById("newsListView");
+        const articleView = document.getElementById("articleView");
+        const newsList = document.getElementById("newsList");
+        const loadMoreBtn = document.getElementById("loadMoreNews");
+
+        const articleTitle = document.getElementById("articleTitle");
+        const articleMeta = document.getElementById("articleMeta");
+        const articleImage = document.getElementById("articleImage");
+        const articleBody = document.getElementById("articleBody");
+        const backBtn = document.getElementById("backToList");
+
+        let allPreviewNodes = [];
+        let visibleCount = 0;
+
+        /* ============================
+           STORY PARSING
+        ============================ */
+
+        function parseStory(text) {
+            const data = {
+                image: "",
+                title: "",
+                articleRaw: "",
+                meta: ""
+            };
+
+            let inArticle = false;
+
+            for (let line of text.split("\n")) {
+                line = line.trim();
+
+                if (line.startsWith("[image]")) {
+                    data.image = line.replace("[image]", "").trim();
+                    inArticle = false;
+                } else if (line.startsWith("[title]")) {
+                    data.title = line.replace("[title]", "").trim();
+                    inArticle = false;
+                } else if (line.startsWith("[article]")) {
+                    inArticle = true;
+                } else if (line.startsWith("[meta]")) {
+                    data.meta = line.replace("[meta]", "").trim();
+                    inArticle = false;
+                } else if (inArticle) {
+                    data.articleRaw += line + "\n";
+                }
+            }
+
+            return data;
+        }
+
+        function formatArticle(text) {
+            const lines = text.split("\n");
+            let html = "";
+            let paragraph = [];
+
+            function flush() {
+                if (paragraph.length) {
+                    html += `<p>${paragraph.join(" ")}</p>`;
+                    paragraph = [];
+                }
+            }
+
+            for (let line of lines) {
+                line = line.trim();
+
+                if (line.startsWith("## ")) {
+                    flush();
+                    html += `<h3>${line.slice(3)}</h3>`;
+                    continue;
+                }
+
+                if (line === "") {
+                    flush();
+                    continue;
+                }
+
+                line = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+                paragraph.push(line);
+            }
+
+            flush();
+            return html;
+        }
+
+        function getPreviewFromRaw(raw, words = 30) {
+            const clean = raw
+                .split("\n")
+                .filter(l => !l.startsWith("## "))
+                .join(" ")
+                .replace(/\*\*(.*?)\*\*/g, "$1");
+
+            return clean.split(/\s+/).slice(0, words).join(" ") + "…";
+        }
+
+        function getQueryArticle() {
+            return new URLSearchParams(location.search).get("article");
+        }
+
+        /* ============================
+           LOAD LIST (NO FLASH)
+        ============================ */
+
+        async function loadList() {
+            const res = await fetch(MANIFEST_URL);
+            if (!res.ok) return;
+
+            const files = (await res.text())
+                .split("\n")
+                .map(l => l.trim())
+                .filter(l => l && !l.startsWith("#"));
+
+            const fragment = document.createDocumentFragment();
+
+            for (const file of files) {
+                const storyText = await (await fetch(STORIES_BASE + file)).text();
+                const story = parseStory(storyText);
+
+                const link = document.createElement("a");
+                link.className = "news-link";
+                link.href = `?article=${encodeURIComponent(file)}`;
+                link.style.display = "none";
+
+                link.innerHTML = `
+          <article class="news-item">
+            <img src="${story.image}" alt="${story.title}">
+            <div class="news-content">
+              <h4>${story.title}</h4>
+              <p>${getPreviewFromRaw(story.articleRaw)}</p>
+              <span class="news-meta">${story.meta}</span>
+            </div>
+          </article>
+        `;
+
+                allPreviewNodes.push(link);
+                fragment.appendChild(link);
+            }
+
+            newsList.appendChild(fragment);
+            showNextPage();
+        }
+
+        /* ============================
+           PAGINATION
+        ============================ */
+
+        function showNextPage() {
+            const next = visibleCount + PAGE_SIZE;
+
+            for (let i = visibleCount; i < next; i++) {
+                if (allPreviewNodes[i]) {
+                    allPreviewNodes[i].style.display = "block";
+                }
+            }
+
+            visibleCount = next;
+
+            if (visibleCount >= allPreviewNodes.length) {
+                loadMoreBtn.style.display = "none";
+            }
+        }
+
+        loadMoreBtn.onclick = showNextPage;
+
+        /* ============================
+           ARTICLE VIEW
+        ============================ */
+
+        async function loadArticle(file) {
+            const storyText = await (await fetch(STORIES_BASE + file)).text();
+            const story = parseStory(storyText);
+
+            articleTitle.textContent = story.title;
+            articleMeta.textContent = story.meta;
+            articleImage.src = story.image;
+            articleBody.innerHTML = formatArticle(story.articleRaw);
+
+            listView.hidden = true;
+            articleView.hidden = false;
+        }
+
+        backBtn.onclick = () => {
+            history.pushState({}, "", location.pathname);
+            articleView.hidden = true;
+            listView.hidden = false;
+            location.reload()
+        };
+
+        window.addEventListener("popstate", () => {
+            const article = getQueryArticle();
+            article ? loadArticle(article) : (articleView.hidden = true);
+        });
+
+        /* ============================
+           INIT
+        ============================ */
+
+        (async function init() {
+            const article = getQueryArticle();
+            if (article) {
+                await loadArticle(article);
+            } else {
+                await loadList();
+            }
+        })();
+    </script>
+
+    <script src="../content/public/dist/devkitty.min.js" ggdk="../icons.ggdk"></script>
+</body>
+
+</html>

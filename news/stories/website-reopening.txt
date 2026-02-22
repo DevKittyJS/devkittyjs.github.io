@@ -1,4 +1,4 @@
-[image] https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&h=500&fit=crop
+[image] https://github.com/DevKittyJS/devkittyjs.github.io/blob/c6bc1a59cc7dd4a5426ae97759299a43d50eaf73/images/rowa-img.png
 [title] Devkitty website reopens!
 [article]
 

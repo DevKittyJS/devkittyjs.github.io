@@ -483,7 +483,6 @@ section h3 {
 
 section p {
     color: var(--muted);
-    max-width: 800px;
 }
 
 .features {
@@ -777,3 +776,4 @@ footer .container .contact .info li a:hover {
     }
 
 }
+

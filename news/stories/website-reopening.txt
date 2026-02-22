@@ -1,4 +1,4 @@
-[image] https://github.com/DevKittyJS/devkittyjs.github.io/blob/c6bc1a59cc7dd4a5426ae97759299a43d50eaf73/images/rowa-img.png
+[image] https://raw.githubusercontent.com/DevKittyJS/devkittyjs.github.io/refs/heads/main/images/rowa-img.png
 [title] Devkitty website reopens!
 [article]
 

@@ -25,8 +25,8 @@ Just clean, controlled asset delivery.
   - `viewport`
   - `never`
 - 📱 Fully responsive & mobile-safe
-- 🌗 Light & dark mode friendly
 - 🔒 Designed to prevent asset scraping
+- 🌐 Almost instant icon loading and faster site loading
 
 ---
 
@@ -39,5 +39,7 @@ Include the DevKitty parser and one or more GGDK files:
   src="parser.js"
   ggdk="icons.ggdk, ui.ggdk">
 </script>
+```
 
 For more info visit: https://devkittyjs.github.io/docs
+

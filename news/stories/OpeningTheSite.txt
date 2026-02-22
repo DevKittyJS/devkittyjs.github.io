@@ -1,0 +1,27 @@
+[image] https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&h=500&fit=crop
+[title] Devkitty website reopens!
+[article]
+
+## A Fresh Start
+
+On January 8th, 2026, Devkitty temporarily closed its doors for maintenance. What looked like a short pause was actually the beginning of a complete rebuild. Behind the scenes, every core system, structure, and visual layer was rewritten to prepare Devkitty for it v1.0 release. 
+The original version laid the foundation, but it was clear the platform needed stronger architecture, cleaner tooling, and a more scalable design. Rather than patching features one by one, the decision was made to reconstruct the entire experience from the ground up. 
+
+## A Proper Home
+
+One of the biggest milestones during this reconstruction was securing the official domain: DevKitty.co.uk.
+Devkitty now operates from its own dedicated home instead of devkitty.github.io. Moving to a custom domain marks an important step forward establishing our identity and independence as the project prepares for its first release.
+
+## What Changed Behind the Scenes
+
+During construction, the Devkitty engine was refined with stricter parsing, improved registry handling, and a more resilient file structure. We created a new file format (.GGDK) which is optimized for clarity and validation, ensuring future icon packages remain fast, predictable, and secure.
+The website itself was also redesigned with simplicity in mind. Navigation has been streamlined, documentation clarified, and the overall layout rebuilt to better reflect Devkitty’s core. This wasn’t just maintenance. It was structural reinforcement for what comes next.
+
+## Almost Ready for Launch
+
+While the system is not publicly released just yet, it is now in its final preparation phase. Internal testing, documentation polishing, and converter refinements are actively underway. Every piece is being reviewed to ensure the first public release feels production-ready and easy to use.
+Devkitty is no longer under construction and has reopened. While the reopening of the website is not the full system release, we are excited to say that the system is almost ready for your hands! as it is in the final stages before it releases. The redesigned site lays the groundwork for documentation, updates, announcements, and the upcoming launch of the Devkitty engine itself.
+
+Devkitty is officially back online. But stay tuned! The first release is closer than ever.
+
+[meta] February 22nd 2026 · Posted by Devkitty Team

@@ -36,9 +36,10 @@ Include the DevKitty parser and one or more GGDK files:
 
 ```html
 <script
-  src="parser.js"
+  src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js"
   ggdk="icons.ggdk, ui.ggdk">
 </script>
 ```
 
 For more info visit: https://devkittyjs.github.io/docs
+

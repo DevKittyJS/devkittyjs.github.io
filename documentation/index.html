@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation - Devkitty</title>
+  <meta name="description"
+    content="Devkitty is a lightweight JavaScript-based icon and asset API. Load SVG icons securely using the custom GGDK format without exposing raw SVG markup. Fast, clean, and developer-friendly.">
+  <meta name="keywords"
+    content="SVG icons, JavaScript icon API, icon system, web icons, frontend assets, Devkitty, GGDK format, GGDK, Devkitty, Developer, icons, SVG">
+  <meta name="author" content="Devkitty">
+  <link rel="canonical" href="https://devkitty.co.uk/">
+  <link rel="icon" href="../images/light/Logo.svg">
+  <link rel="icon" href="../images/light/Logo.svg" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../images/dark/Logo.svg" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="../styles/index.css">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://devkitty.com/">
+  <meta property="og:title" content="Devkitty">
+  <meta property="og:description"
+    content="A lightweight SVG icon system powered by the Javascript. Secure, fast, and built for modern frontend development.">
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/images/socpre.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Devkitty">
+  <meta name="twitter:description"
+    content="Load SVG icons securely using Devkitty's custom GGDK format. Fast and developer-first.">
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/images/socpre.png">
+  <meta name="robots" content="index, follow">
+  <style>
+    /* ================= GLOBAL ================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ================= LAYOUT ================= */
+    .doc-wrapper {
+      display: flex;
+    }
+
+    /* ================= NAV ================= */
+    .docnav {
+      width: 260px;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      position: fixed;
+      /* keep sidebar fixed */
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .docnav h1 {
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .nav-link {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 0;
+      font-size: 14px;
+      transition: 0.25s;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-main.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .nav-sub-link.active {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .nav-sub {
+      margin-left: 15px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.35s ease;
+    }
+
+    .nav-sub.show {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    /* ================= CONTENT ================= */
+    main {
+      flex: 1;
+      padding: 60px;
+      margin-left: 260px;
+      /* leave space for fixed sidebar */
+      max-width: calc(100% - 260px);
+      /* shrink fluidly with screen */
+      box-sizing: border-box;
+    }
+
+    .doc-section {
+      max-width: 100%;
+      margin-bottom: 120px;
+    }
+
+    .doc-subsection {
+      margin-top: 40px;
+    }
+
+    main h2 {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      font-size: 28px;
+    }
+
+    main h3 {
+      font-size: 20px;
+      margin-top: 40px;
+    }
+
+    main p {
+      line-height: 1.7;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    main a {
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    main code {
+      background: var(--panel);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      word-break: break-word;
+    }
+
+    main pre {
+      background: var(--panel);
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-top: 12px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-x: hidden;
+      /* prevent horizontal scroll */
+    }
+
+    main .warning {
+      background: rgba(255, 176, 32, 0.08);
+      border: 1px solid rgba(255, 176, 32, 0.3);
+      padding: 14px;
+      border-radius: 6px;
+      margin-top: 16px;
+      color: var(--warn);
+    }
+
+    /* ================= RESPONSIVE TEXT ================= */
+    /* Small tablets / large phones */
+    @media (max-width: 1024px) {
+      main {
+        margin-left: 260px;
+        max-width: calc(100% - 260px);
+      }
+
+      main h2 {
+        font-size: 24px;
+      }
+
+      main h3 {
+        font-size: 18px;
+      }
+
+      main p {
+        font-size: 15px;
+      }
+
+      .nav-link {
+        font-size: 13px;
+      }
+
+      main pre {
+        font-size: 13px;
+        padding: 12px;
+      }
+    }
+
+    /* Phones */
+    @media (max-width: 768px) {
+      main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px;
+      }
+
+      .docnav {
+        display: none;
+      }
+
+      /* hide sidebar */
+      .doc-wrapper {
+        flex-direction: column;
+      }
+
+      main h2 {
+        font-size: 22px;
+      }
+
+      main h3 {
+        font-size: 16px;
+      }
+
+      main p {
+        font-size: 14px;
+      }
+
+      .nav-link {
+        font-size: 12px;
+      }
+
+      main pre {
+        font-size: 12px;
+        padding: 10px;
+      }
+    }
+
+    /* Small phones */
+    @media (max-width: 480px) {
+      main h2 {
+        font-size: 20px;
+      }
+
+      main h3 {
+        font-size: 15px;
+      }
+
+      main p {
+        font-size: 13px;
+      }
+
+      .nav-link {
+        font-size: 11px;
+      }
+
+      main pre {
+        font-size: 11px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo"><dk-el icon="Devkitty" size="45" color="#ff5c93"></dk-el>DevKitty</div>
+    <div class="nav-wrapper">
+      <div class="nav-container">
+        <nav class="navigation">
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../#about">About</a></li>
+            <li><a href="../documentation/">Documentation</a></li>
+            <li><a href="../convert/">Converter</a></li>
+            <li style="display: none;"><a href="#">Icons</a></li>
+          </ul>
+        </nav>
+        <div class="sign-in"> <button>Donate</button> </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-wrapper">
+
+    <nav class="docnav">
+      <h1>Documentation</h1>
+      <div id="nav"></div>
+    </nav>
+
+    <main>
+
+      <!-- ================= SECTION 1 ================= -->
+      <section class="doc-section">
+        <h2>Getting Started</h2>
+
+        <div class="doc-subsection">
+          <h3>Introduction</h3>
+          <p>
+            <strong>Devkitty</strong> is a JavaScript-based vector asset system built for developers
+            who want full control over icon loading, rendering, and performance — without
+            exposing SVG markup or polluting the DOM.
+          </p>
+          <p>
+            Icons are rendered using <code>&lt;canvas&gt;</code> via a custom element
+            called <code>&lt;dk-el&gt;</code>.
+          </p>
+          <p>
+            Icons are bundled into a custom container format called <strong>GGDK</strong>,
+            allowing hundreds of icons to live in a single file while still being loaded
+            and parsed only when needed.
+          </p>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Design Philosophy</h3>
+          <br>
+          <p><strong>Explicit Over Implicit:</strong> avoids hidden behavior.</p>
+          <p><strong>Fast, Fail Loud:</strong> GGDK files are parsed strictly.</p>
+          <p><strong>No SVG in the DOM:</strong> SVG markup never appears in DevTools.</p>
+          <p>
+            <strong>Hosting Is a Developer Responsibility:</strong> Devkitty fetches GGDK files using standard browser
+            <code>fetch()</code>.
+            Hosting configuration must allow cross-origin access or the file must be same-origin (in your site files).
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2 ================= -->
+      <section class="doc-section">
+        <h2>Core Concepts</h2>
+
+        <div class="doc-subsection">
+          <h3>GGDK Format</h3>
+          <pre>@meta
+  format=devkitty
+  version=1
+  type=icon
+  mode=package
+  iconCount=3
+
+@icons
+{
+  "name": "apple",
+  "viewBox": "0 0 24 24",
+  "instructions": [
+    { "op": "path", "d": "M12 2L..." }
+  ]
+}
+  </pre>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>The &lt;dk-el&gt; Element</h3>
+          <pre>
+&lt;dk-el icon="example" size="48" color="red"&gt;&lt;/dk-el&gt;
+  </pre>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Loading Pipeline</h3>
+          <ol>
+            <li>GGDK fetched</li>
+            <li>Index built</li>
+            <li>Icons parsed on demand</li>
+            <li>Elements render</li>
+          </ol>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Performance</h3>
+          <p>Projects are lightning-fast by storing 100+ icons in a single GGDK file, loading only the icons you
+            request,
+            and rendering them via HTML5 Canvas. This approach avoids cluttering the DOM with inline SVG code and
+            eliminates the need to fetch and cache multiple SVG files, keeping pages clean, efficient, and responsive.
+          </p>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Rendering</h3>
+          <p>Icons render via Path2D on HiDPI canvas.</p>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3 ================= -->
+      <section class="doc-section">
+        <h2>How to use?</h2>
+
+        <div class="doc-subsection">
+          <h3>Adding Devkitty</h3>
+          <p>Integrating Devkitty into your website is simple and flexible. There are multiple ways to add it, allowing
+            you to choose the method that best fits your workflow and project setup.</p>
+          <p><strong>Option 1:</strong></p>
+          <p>Include the following script tag in your website's <code>.html</code> file:</p>
+          <pre>&lt;script src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js"&gt;&lt;/script&gt;</pre>
+          <p><em>Recommended:</em> This method supports automatic updates and loads faster.</p>
+          <br>
+          <p><strong>Option 2:</strong></p>
+          <p>You can <a href="#">download</a> the Devkitty script and include it directly in your website's files,
+            giving you full control over the version you use and allowing offline use if needed.</p>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Creating GGDK's</h3>
+          <p>A GGDK file is required for Devkitty to function, and creating one is quick and straightforward. Simply
+            visit the Devkitty <a href="#">converter</a>, upload your <code>.svg</code> icon files, choose your
+            preferred settings, and generate your GGDK file. Before exporting, you can review and edit the generated
+            GGDK to suit your needs.</p>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Loading GGDK Files</h3>
+          <p>Loading your GGDK file is essential - without it, no icons will appear. You can either host the GGDK file
+            on
+            your website and link to it locally, or use a CDN-hosted link. Using a CDN is recommended, as raw GitHub
+            links and similar sources are often blocked due to CORS policies.</p>
+          <p><strong>Recommended (CDN Hosted):</strong></p>
+          <pre>&lt;script src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js"
+        ggdk="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io@main/GGDK/icons.ggdk [Link to your GGDK]"&gt;
+&lt;/script&gt;
+  </pre>
+          <p>In the example above, the <code>.ggdk</code> file is loaded for Devkitty using the <code>ggdk=""</code>
+            attribute on the linked script. Alternatively, you can dynamically load a GGDK file at any time using the
+            JavaScript function:</p>
+          <pre>GGDK.fetch("https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io@main/GGDK/icons.ggdk [Link to your GGDK]");</pre>
+        </div>
+
+        <div class="doc-subsection">
+          <h3>Hosting & CORS Requirements</h3>
+          <p>
+            Devkitty loads GGDK files using browser <code>fetch()</code>. If your file is hosted
+            on a different domain than your website, the server must allow cross-origin requests.
+          </p>
+
+          <div class="warning">
+            If your icons fail to load with a "Blocked by CORS policy" error,
+            the issue is with your hosting configuration — not Devkitty.
+          </div>
+
+          <h3>Required Header</h3>
+          <pre>
+Access-Control-Allow-Origin: *
+  </pre>
+
+          <h3>Recommended Hosting Providers</h3>
+          <ul>
+            <li>jsDelivr (recommended for GitHub repositories)</li>
+            <li>Cloudflare</li>
+            <li>Vercel</li>
+            <li>Netlify</li>
+            <li>AWS S3 (with CORS enabled)</li>
+            <li>Same-origin hosting</li>
+          </ul>
+
+          <h3>Do NOT Use:</h3>
+          <pre>
+https://raw.githubusercontent.com/...
+  </pre>
+
+          <p>
+            The GitHub raw domain does not reliably provide the required CORS headers.
+            Use jsDelivr instead:
+          </p>
+
+          <pre>
+https://cdn.jsdelivr.net/gh/username/repo@branch/path/file.ggdk
+  </pre>
+
+          <h3>Why This Matters</h3>
+          <p>
+            Browsers block cross-origin requests that do not explicitly allow access.
+            Devkitty cannot override browser security policies.
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4 ================= -->
+      <section class="doc-section">
+        <h2>Attributes</h2>
+
+        <div class="doc-subsection">
+          <h3>Icon</h3>
+          <p><em>* Required</em></p>
+          <pre>&lt;dk-el icon="example [name of icon]"&gt;&lt;/dk-el&gt;</pre>
+        </div>
+        <div class="doc-subsection">
+          <h3>Size</h3>
+          <p>Default size: 70</p>
+          <pre>&lt;dk-el icon="example" size="100"&gt;&lt;/dk-el&gt;</pre>
+        </div>
+        <div class="doc-subsection">
+          <h3>Color</h3>
+          <p>The color attribute supports color names, hex values, RGB, and RGBA formats.</p>
+          <pre>&lt;dk-el icon="example" size="100" color="red"&gt;&lt;/dk-el&gt;</pre>
+          <pre>&lt;dk-el icon="example" size="100" color="#FF0000"&gt;&lt;/dk-el&gt;</pre>
+          <pre>&lt;dk-el icon="example" size="100" color="rgb(255,0,0)"&gt;&lt;/dk-el&gt;</pre>
+          <pre>&lt;dk-el icon="example" size="100" color="rgb(255,0,0, 0.5)"&gt;&lt;/dk-el&gt;</pre>
+        </div>
+        <div class="doc-subsection">
+          <h3>Preload</h3>
+          <p>The preload attribute supports multiple loading modes, allowing you to control when and how icons are
+            rendered.</p>
+          <p><strong>immediate:</strong></p>
+          <p><em>* Default</em></p>
+          <pre>&lt;dk-el icon="example" size="100" color="red" preload="immediate"&gt;&lt;/dk-el&gt;<br><em>* Not required to add as it is the default</em></pre>
+          <p><strong>idle:</strong></p>
+          <p>Loads when the browser is idle, behaving similarly to immediate in most cases.</p>
+          <pre>&lt;dk-el icon="example" size="100" color="red" preload="idle"&gt;&lt;/dk-el&gt;</pre>
+          <p><strong>hover:</strong></p>
+          <p>Loads the icon when the user hovers over it.</p>
+          <pre>&lt;dk-el icon="example" size="100" color="red" preload="hover"&gt;&lt;/dk-el&gt;</pre>
+          <p><strong>viewport:</strong></p>
+          <p>Loads the icon when it enters the viewport.</p>
+          <pre>&lt;dk-el icon="example" size="100" color="red" preload="viewport"&gt;&lt;/dk-el&gt;</pre>
+          <p><strong>never:</strong></p>
+          <p>The icon will not load and must be triggered manually via JavaScript.</p>
+          <pre>&lt;dk-el icon="example" size="100" color="red" preload="never"&gt;&lt;/dk-el&gt;</pre>
+          <p><em>to trigger the loading of an icon:</em></p>
+          <pre>const el = document.querySelector('dk-el[icon="example"]');<br>el.load();</pre>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 5 ================= -->
+      <section class="doc-section">
+        <h2>Limitations</h2>
+        <p>While Devkitty is designed for performance and simplicity, there are some limitations to be aware of. Its
+          canvas-based rendering model and optimized GGDK format prioritize speed and efficiency, which means certain
+          advanced SVG features are intentionally not supported. However, most standard SVG icons convert and function
+          without issues, we are also working on features to add support for more SVGs in future versions.</p>
+        <ul>
+          <li>Single-color fills only</li>
+          <li>Path-only icons (no strokes, gradients, filters, or embedded images)</li>
+          <li>Limited CSS control (color and size must be set via <code>&lt;dk-el&gt;</code> attributes)</li>
+          <li>No direct DOM access to SVG markup</li>
+          <li>Advanced SVG features such as masks, clipPaths, and animations are not supported</li>
+          <li>Icons must be converted to GGDK format before use</li>
+        </ul>
+      </section>
+
+      <!-- ================= SECTION 6 ================= -->
+      <section class="doc-section">
+        <h2>What's Next?</h2>
+        <p>Devkitty is continuously evolving with a strong focus on performance, flexibility, and developer experience.
+          Future updates will expand customization options, improve efficiency, and introduce new capabilities while
+          maintaining the lightweight core that makes Devkitty fast and reliable.</p>
+        <ul>
+          <li>Ongoing bug fixes and stability improvements</li>
+          <li>Multi-color icon support for more complex designs</li>
+          <li>CSS pass-through, allowing color, size, and additional properties to be controlled directly via CSS</li>
+          <li>Animated icon support with optimized canvas rendering</li>
+          <li>Binary GGDK format for smaller file sizes and faster parsing</li>
+          <li>Icon subsetting to load only specific groups from large GGDK packages</li>
+          <li>Developer tooling improvements and enhanced converter features</li>
+          <li>Expanded asset support beyond icons using the <code>&lt;dk-el&gt;</code> system</li>
+        </ul>
+      </section>
+
+      <p><em>Last updated: 26 February 2026 — Documentation is actively maintained alongside Devkitty updates. Check
+          back regularly for the latest features and changes.</em></p>
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="sec about">
+        <h2>About Us</h2>
+        <p>Devkitty is a lightweight JavaScript icon system designed to keep your markup clean and your projects
+          fast. Instead of injecting raw SVG...</p>
+        <ul class="sci">
+          <li><a href="https://github.com/DevKittyJS/" target="_blank"><dk-el icon="github" size="25"
+                color="#0f1220"></dk-el></a></li>
+          <li><a href="https://facebook.com" target="_blank"><dk-el icon="facebook-f" size="25"
+                color="#0f1220"></dk-el></a></li>
+          <li><a href="https://x.com" target="_blank"><dk-el icon="twitter-x" size="25" color="#0f1220"></dk-el></a>
+          </li>
+          <li><a href="https://instagram.com" target="_blank"><dk-el icon="instagram" size="25"
+                color="#0f1220"></dk-el></a></li>
+          <li><a href="https://youtube.com" target="_blank"><dk-el icon="youtube" size="25" color="#0f1220"></dk-el></a>
+          </li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Product</h2>
+        <ul>
+          <li><a href="../documentation/">Documentation</a></li>
+        </ul>
+        <ul>
+          <li><a href="../convert/">Converter</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Donate</a></li>
+        </ul>
+        <ul>
+          <li><a href="../news/">News</a></li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Legal</h2>
+        <ul>
+          <li><a href="../legal/#license">License</a></li>
+        </ul>
+        <ul>
+          <li><a href="../legal/#terms">Terms & Conditions</a></li>
+        </ul>
+        <ul>
+          <li><a href="../legal/#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="sec quicklinks">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="https://github.com/DevKittyJS/" target="_blank">Github</a></li>
+        </ul>
+        <ul>
+          <li><a href="../documentation/">Documentation</a></li>
+        </ul>
+        <ul>
+          <li><a href="../convert/">Converter</a></li>
+        </ul>
+        <ul>
+          <li style="display: none;"><a href="#">Account</a></li>
+        </ul>
+        <ul>
+          <li style="display: none;"><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="sec contact">
+        <h2>Contact Us</h2>
+        <ul class="info">
+          <li style="display: none;"> <span><dk-el icon="phone" size="20" color="#0f1220"></dk-el></span>
+            <p><a href="tel:+12345678900">+1 234 567 8900</a></p>
+          </li>
+          <li> <span><dk-el icon="email" size="20" color="#0f1220"></dk-el></span>
+            <p><a href="mailto:devkittyjs@gmail.com">devkittyjs@gmail.com</a></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="copyrightText">
+    <p>Copyright &copy;2026 Devkitty. All Rights Reserved.</p>
+  </div>
+
+  <script>
+    const nav = document.getElementById("nav");
+    const sections = document.querySelectorAll(".doc-section");
+    const ACTIVATION_OFFSET = 100;
+
+    /* ================= BUILD NAV ================= */
+
+    sections.forEach((section, i) => {
+
+      if (!section.id) section.id = "section-" + i;
+
+      // Main section link
+      const mainLink = document.createElement("a");
+      mainLink.href = "#" + section.id;
+      mainLink.className = "nav-link nav-main";
+      mainLink.textContent = section.querySelector("h2").innerText;
+      nav.appendChild(mainLink);
+
+      const subContainer = document.createElement("div");
+      subContainer.className = "nav-sub";
+      nav.appendChild(subContainer);
+
+      const subs = section.querySelectorAll(".doc-subsection");
+
+      subs.forEach((sub, j) => {
+        if (!sub.id) sub.id = section.id + "-sub-" + j;
+
+        const subLink = document.createElement("a");
+        subLink.href = "#" + sub.id;
+        subLink.className = "nav-link nav-sub-link";
+        subLink.textContent = sub.querySelector("h3").innerText;
+        subContainer.appendChild(subLink);
+      });
+
+      section._subContainer = subContainer;
+    });
+
+    /* ================= SCROLL SPY ================= */
+
+    function updateActive() {
+
+      let activeSection = null;
+      let activeSub = null;
+
+      const scrollY = window.scrollY;
+      const pageBottom =
+        window.innerHeight + scrollY >= document.body.offsetHeight - 2;
+
+      if (pageBottom) {
+        activeSection = sections[sections.length - 1];
+      } else {
+        sections.forEach(section => {
+          if (scrollY + ACTIVATION_OFFSET >= section.offsetTop) {
+            activeSection = section;
+          }
+        });
+      }
+
+      if (activeSection) {
+        const subs = activeSection.querySelectorAll(".doc-subsection");
+        subs.forEach(sub => {
+          if (scrollY + ACTIVATION_OFFSET >= sub.offsetTop) {
+            activeSub = sub;
+          }
+        });
+      }
+
+      document.querySelectorAll(".nav-link")
+        .forEach(l => l.classList.remove("active"));
+      document.querySelectorAll(".nav-sub")
+        .forEach(s => s.classList.remove("show"));
+
+      if (activeSection) {
+        const mainLink =
+          document.querySelector(`a[href="#${activeSection.id}"]`);
+        if (mainLink) mainLink.classList.add("active");
+
+        if (activeSection._subContainer) {
+          activeSection._subContainer.classList.add("show");
+        }
+      }
+
+      if (activeSub) {
+        const subLink =
+          document.querySelector(`a[href="#${activeSub.id}"]`);
+        if (subLink) subLink.classList.add("active");
+      }
+    }
+
+    window.addEventListener("scroll", updateActive);
+    updateActive();
+  </script>
+  <script>
+    //header scroll for pc
+    const container = document.querySelector('.nav-container');
+
+    container.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        container.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }
+    });
+
+    //dk-el color change
+    (function () {
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      // Sections we want to auto-theme
+      const sections = [
+        document.querySelector('footer'),
+        document.querySelector('.hero .image'),
+        document.querySelector('.supported-container .icon-container')
+      ].filter(Boolean);
+
+      function applyIconColor(isDark) {
+        const color = isDark ? '#e6e8eb' : '#0f1220';
+
+        sections.forEach(section => {
+          section.querySelectorAll('dk-el').forEach(icon => {
+            icon.setAttribute('color', color);
+          });
+        });
+      }
+
+      // Initial apply
+      applyIconColor(media.matches);
+
+      // React to system theme changes
+      media.addEventListener('change', e => {
+        applyIconColor(e.matches);
+      });
+    })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js"
+    ggdk="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io@main/GGDK/icons.ggdk"></script>
+</body>
+
+</html>

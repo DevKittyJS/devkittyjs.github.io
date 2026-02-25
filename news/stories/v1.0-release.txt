@@ -1,0 +1,57 @@
+[image] https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/images/dkrpr-img.png
+[title] Devkitty v1.0 Officially Released
+[article]
+
+## Devkitty v1.0 Is Here
+
+After weeks of intense development, optimization, and testing, Devkitty finally achieves its first major milestone. The system has been designed with long-term stability and robustness in mind, the documentation has been written with care, and the engine has been thoroughly stress-tested to ensure a predictable and high-performance system. From concept to a fully functional system, it has come and today marks Devkitty's v1.0 officially lanching.
+
+## What v1.0 Represents
+
+Version 1.0 marks the first full public release of the Devkitty engine. A JavaScript-based vector icon system built for developers who want performance, control, and clean markup.
+
+At its core, Devkitty introduces:
+
+• The GGDK container format for bundling large icon packages
+
+• Strict, fail-loud parsing for predictable behavior 
+ 
+• Canvas-based rendering powered by Path2D  
+
+• The custom <dk-el> element for clean HTML usage 
+ 
+• On-demand loading with multiple preload modes 
+ 
+• A DOM free of inline SVG clutter  
+
+Icons are stored in a structured GGDK file, fetched using the browser’s native fetch() API, indexed efficiently, and rendered only when requested. Hundreds of icons can live in a single file without sacrificing performance or flooding the DOM.
+
+## Documentation & Getting Started
+
+With v1.0 now live, full documentation is available, covering:
+
+• GGDK format structure
+  
+• The <dk-el> element and its attributes 
+ 
+• Preload modes and manual loading  
+
+• Hosting and CORS requirements  
+
+• CDN recommendations  
+
+• Current limitations  
+
+• Planned roadmap features  
+
+If you're ready to try Devkitty, head to the Getting Started page for a quick setup guide, or explore the full documentation for deeper technical details.
+
+Everything you need to integrate Devkitty into your website is now available.
+
+## The Beginning of Something Bigger
+
+Version 1.0 is a stable foundation but not the final destination. Future updates will expand customization, introduce multi-color support and continue evolving the GGDK format while keeping the core lightweight and fast.
+
+Devkitty v1.0 has officially launched.
+
+[meta] February 26th 2026 · Posted by Devkitty Team

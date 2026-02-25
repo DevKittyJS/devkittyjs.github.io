@@ -41,5 +41,6 @@ Include the DevKitty parser and one or more GGDK files:
 </script>
 ```
 
-For more info visit: https://devkittyjs.github.io/docs
+For more info visit: https://devkittyjs.github.io/documentation
+
 

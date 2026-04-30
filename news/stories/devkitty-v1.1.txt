@@ -1,0 +1,22 @@
+[image] https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io@main/images/re-v1.1updt.jpg
+[title] Version 1.1 Release
+[article]
+
+## A Solid Step Forward
+Today marks the official release of DevKitty v1.1. While this update doesn’t change the core idea of DevKitty, it significantly refines how everything works under the hood. The goal of this release was simple: make the system more reliable, more secure, and more predictable without changing how developers use it.
+
+## A Stronger Format
+One of the biggest improvements in v1.1 is the evolution of the GGDK format. While its purpose remains the same, the internal structure has been upgraded with stronger encryption, better indexing, and improved lazy decoding. Icons are now handled more efficiently, reducing overhead while ensuring the source data remains protected at all times.
+
+## Engine Improvements
+The DevKitty engine has also received a series of important refinements. Rendering is now more consistent, preload behavior has been stabilised, and the registry system has been improved to better handle async loading. These changes may not be visible on the surface, but they make the system far more robust in use.
+
+## Converter & Workflow Updates
+The converter has been simplified to better match DevKitty’s philosophy of clarity and ease of use. The process is now more direct, allowing developers to go from SVG to GGDK with fewer steps and less friction. This makes building icon packages faster.
+
+## Looking Ahead
+Version 1.1 is not a feature update, but it is an important step in strengthening the foundation of DevKitty. With a more secure format, a more stable engine, and a cleaner workflow, the platform is now better prepared for future expansion.
+
+We are excited to show you new features we are working on in future updates and news posts.
+
+[meta] April 30th 2026 · Posted by Devkitty Team

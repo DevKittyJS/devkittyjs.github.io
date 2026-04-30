@@ -68,7 +68,6 @@
       color: var(--accent);
       font-size: 20px;
       margin-bottom: 20px;
-      margin-top: 70px;
     }
 
     .nav-link {
@@ -344,22 +343,7 @@
 
         <div class="doc-subsection">
           <h3>GGDK Format</h3>
-          <pre>@meta
-  format=devkitty
-  version=1
-  type=icon
-  mode=package
-  iconCount=3
-
-@icons
-{
-  "name": "apple",
-  "viewBox": "0 0 24 24",
-  "instructions": [
-    { "op": "path", "d": "M12 2L..." }
-  ]
-}
-  </pre>
+          <pre>DevKitty uses the GGDK binary format, which securely packages icons into a single secure encrypted file. Icons are indexed, lazily loaded, and decoded at runtime for fast performance. This approach prevents raw SVG exposure, reduces load time, and efficiently supports large icon sets in modern web applications.</pre>
         </div>
 
         <div class="doc-subsection">
@@ -408,14 +392,14 @@
           <p><em>Recommended:</em> This method supports automatic updates and loads faster.</p>
           <br>
           <p><strong>Option 2:</strong></p>
-          <p>You can <a href="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/downloads/devkitty-v1.0.zip">download</a> the Devkitty script and include it directly in your website's files,
+          <p>You can <a href="#">download</a> the Devkitty script and include it directly in your website's files,
             giving you full control over the version you use and allowing offline use if needed.</p>
         </div>
 
         <div class="doc-subsection">
           <h3>Creating GGDK's</h3>
           <p>A GGDK file is required for Devkitty to function, and creating one is quick and straightforward. Simply
-            visit the Devkitty <a href="../convert/">converter</a>, upload your <code>.svg</code> icon files, choose your
+            visit the Devkitty <a href="#">converter</a>, upload your <code>.svg</code> icon files, choose your
             preferred settings, and generate your GGDK file. Before exporting, you can review and edit the generated
             GGDK to suit your needs.</p>
         </div>
@@ -560,14 +544,13 @@ https://cdn.jsdelivr.net/gh/username/repo@branch/path/file.ggdk
           <li>Multi-color icon support for more complex designs</li>
           <li>CSS pass-through, allowing color, size, and additional properties to be controlled directly via CSS</li>
           <li>Animated icon support with optimized canvas rendering</li>
-          <li>Binary GGDK format for smaller file sizes and faster parsing</li>
           <li>Icon subsetting to load only specific groups from large GGDK packages</li>
           <li>Developer tooling improvements and enhanced converter features</li>
           <li>Expanded asset support beyond icons using the <code>&lt;dk-el&gt;</code> system</li>
         </ul>
       </section>
 
-      <p><em>Last updated: 26 February 2026 — Documentation is actively maintained alongside Devkitty updates. Check
+      <p><em>Last updated: 30 April 2026 — Documentation is actively maintained alongside Devkitty updates. Check
           back regularly for the latest features and changes.</em></p>
     </main>
   </div>
@@ -789,6 +772,5 @@ https://cdn.jsdelivr.net/gh/username/repo@branch/path/file.ggdk
   <script src="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io/public/dist/devkitty.min.js"
     ggdk="https://cdn.jsdelivr.net/gh/DevKittyJS/devkittyjs.github.io@main/GGDK/icons.ggdk"></script>
 </body>
-
 
 </html>
